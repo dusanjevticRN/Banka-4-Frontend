@@ -14,20 +14,20 @@
 ## Struktura projekta
 ```
 src/
-├── api/                  Axios klijent i endpoint definicije
-│   ├── client.js         Axios instanca, interceptori, refresh token
-│   └── endpoints/        API pozivi grupisani po feature
-├── animations/           GSAP hookovi (usePageTransition)
+├── api/ Axios klijent i endpoint definicije
+│ ├── client.js Axios instanca, interceptori, refresh token
+│ └── endpoints/ API pozivi grupisani po feature
+├── animations/ GSAP hookovi (usePageTransition)
 ├── components/
-│   ├── layout/           Navbar, ChangePasswordModal
-│   └── ui/               Alert, Spinner
+│ ├── layout/ Navbar, ChangePasswordModal
+│ └── ui/ Alert, Spinner
 ├── features/
-│   └── employees/        EmployeeTable, EmployeeFilters
-├── hooks/                useFetch, useDebounce
-├── pages/                Jedna stranica = jedna ruta
-├── store/                Zustand store (auth)
-├── styles/               CSS varijable
-└── utils/                Validacija, helperi
+│ └── employees/ EmployeeTable, EmployeeFilters
+├── hooks/ useFetch, useDebounce
+├── pages/ Jedna stranica = jedna ruta
+├── store/ Zustand store (auth)
+├── styles/ CSS varijable
+└── utils/ Validacija, helperi
 ```
 
 ---
