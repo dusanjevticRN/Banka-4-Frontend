@@ -41,6 +41,7 @@ const FAKE_PAYMENTS = [
   {
     id: 1,
     date: '2024-03-14 14:20',
+    execution_timestamp: '2024-03-14 14:20:05', // Dodato za zahtev 4
     recipient: 'Restoran "Sidro"',
     amount: -4200.00,
     currency: 'RSD',
@@ -56,8 +57,9 @@ const FAKE_PAYMENTS = [
   {
     id: 2,
     date: '2024-03-14 12:15',
+    execution_timestamp: '2024-03-14 12:15:10', // Dodato za zahtev 4
     recipient: 'Menjačnica (RSD -> EUR)',
-    amount: -11750.00,
+    amount: 11750.00,
     currency: 'RSD',
     status: 'U obradi',
     type: 'exchange',
@@ -71,6 +73,7 @@ const FAKE_PAYMENTS = [
   {
     id: 3,
     date: '2024-03-13 09:00',
+    execution_timestamp: '2024-03-13 09:00:00', // Dodato za zahtev 4
     recipient: 'Infostan',
     amount: -8500.00,
     currency: 'RSD',

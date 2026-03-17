@@ -6,6 +6,7 @@ import Spinner from '../components/ui/Spinner';
 import Alert from '../components/ui/Alert';
 import PaymentTable from '../features/payments/PaymentTable';
 import PaymentFilters from '../features/payments/PaymentFilters';
+import TransactionDetailsModal from '../features/payments/TransactionDetailsModal';
 import styles from './EmployeeList.module.css';
 
 export default function PaymentOverview() {
@@ -13,6 +14,9 @@ export default function PaymentOverview() {
   const [activeTab, setActiveTab] = useState('payments');
   const [page, setPage] = useState(1);
   const pageSize = 20;
+
+  // STATE ZA ODABRANU TRANSAKCIJU
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
 
   // Filteri moraju imati ove tačne ključeve
   const [filters, setFilters] = useState({
@@ -74,7 +78,7 @@ export default function PaymentOverview() {
 
         {!loading && !error && data && (
           <div className={styles.tableCard}>
-            <PaymentTable transactions={data.data} />
+            <PaymentTable transactions={data.data} onRowClick={(transaction) => setSelectedTransaction(transaction)} />
             {totalPages > 1 && (
               <div className={styles.pagination}>
                 <button disabled={page <= 1} onClick={() => setPage(p => p - 1)}>← Prethodna</button>
@@ -83,6 +87,14 @@ export default function PaymentOverview() {
               </div>
             )}
           </div>
+        )}
+
+        {/* 4. PRIKAZ MODALA AKO JE TRANSAKCIJA ODABRANA */}
+        {selectedTransaction && (
+          <TransactionDetailsModal 
+            transaction={selectedTransaction} 
+            onClose={() => setSelectedTransaction(null)} 
+          />
         )}
       </main>
     </div>
