@@ -7,6 +7,9 @@ import Dashboard           from './pages/Dashboard';
 import EmployeeList        from './pages/EmployeeList';
 import NewEmployee         from './pages/NewEmployee';
 import EmployeeDetails     from './pages/EmployeeDetails';
+import CardsPortal         from './pages/CardsPortal';
+import ClientsPortal       from './pages/ClientsPortal';
+import LoansPortal         from './pages/LoansPortal';
 import NotFound            from './pages/NotFound';
 
 function ProtectedRoute({ children }) {
@@ -22,14 +25,12 @@ function PermissionRoute({ permission, children }) {
 }
 
 export default function App() {
-  const user = useAuthStore(s => s.user);
-  console.log(user)
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/login"            element={<Login />} />
-        <Route path="/reset-password"   element={<ResetPassword />} />
-        <Route path="/activate"          element={<AccountActivation />} />
+        <Route path="/login"          element={<Login />} />
+        <Route path="/reset-password" element={<ResetPassword />} />
+        <Route path="/activate"       element={<AccountActivation />} />
 
         <Route path="/" element={
           <ProtectedRoute><Dashboard /></ProtectedRoute>
@@ -42,6 +43,16 @@ export default function App() {
         } />
         <Route path="/employees/:id" element={
           <ProtectedRoute><PermissionRoute permission="employee.view"><EmployeeDetails /></PermissionRoute></ProtectedRoute>
+        } />
+
+        <Route path="/admin/cards" element={
+          <ProtectedRoute><PermissionRoute permission="admin.cards"><CardsPortal /></PermissionRoute></ProtectedRoute>
+        } />
+        <Route path="/admin/clients" element={
+          <ProtectedRoute><PermissionRoute permission="admin.clients"><ClientsPortal /></PermissionRoute></ProtectedRoute>
+        } />
+        <Route path="/admin/loans" element={
+          <ProtectedRoute><PermissionRoute permission="admin.loans"><LoansPortal /></PermissionRoute></ProtectedRoute>
         } />
 
         <Route path="*" element={<NotFound />} />
