@@ -55,6 +55,43 @@
   color: #999;
 }
 
+.headerHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+}
+
+.actionBtn {
+  background-color: #2ecc71;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.actionBtn:hover {
+  background-color: #27ae60;
+}
+
+.backBtn {
+  background-color: #f1f3f5;
+  color: #495057;
+  border: 1px solid #dee2e6;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.formWrapper {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
 /* Prilagođavanje za manje ekrane */
 @media (max-width: 1024px) {
   .layout {

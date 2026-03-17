@@ -76,6 +76,15 @@ export const FAKE_LOANS = [
   }
 ];
 
+export const MOCK_USER = {
+  id: "USR-123",
+  firstName: "Helena",
+  lastName: "Simić",
+  employment_status: "stalno", // Ključno za workflow
+  salary: 150000,              // Ključno za automatsko odobrenje
+  account_currency: "RSD"      // Ključno za validaciju valute
+};
+
 api.interceptors.request.use(async config => {
   await delay(DELAY);
 
