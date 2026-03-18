@@ -4,6 +4,19 @@ const DELAY = 600;
 
 const delay = ms => new Promise(r => setTimeout(r, ms));
 
+
+const FAKE_CLIENTS = [
+  { id: 1,  first_name: 'Marija',     last_name: 'Ković',     email: 'marija.kovic@raf.rs',      phone: '+381601234567', address: 'Knez Mihailova 10, Beograd',      active: true  },
+  { id: 2,  first_name: 'Nikola',     last_name: 'Savić',     email: 'nikola.savic@raf.rs',       phone: '+381602345678', address: 'Bulevar Oslobođenja 5, Novi Sad', active: true  },
+  { id: 3,  first_name: 'Jelena',     last_name: 'Milić',     email: 'jelena.milic@raf.rs',     phone: '+381603456789', address: 'Nemanjina 15, Beograd',           active: true  },
+  { id: 4,  first_name: 'Stefan',     last_name: 'Đorđević',  email: 'stefan.djordjevic@raf.rs',  phone: '+381604567890', address: 'Cara Dušana 20, Kragujevac',      active: false },
+  { id: 5,  first_name: 'Ana',        last_name: 'Todorović', email: 'ana.todorovic@raf.rs',      phone: '+381605678901', address: 'Terazije 8, Beograd',             active: true  },
+  { id: 6,  first_name: 'Miloš',      last_name: 'Petrović',  email: 'milos.petrovic@raf.rs',     phone: '+381606789012', address: 'Savska 30, Beograd',              active: true  },
+  { id: 7,  first_name: 'Ivana',      last_name: 'Jovanović', email: 'ivana.jovanovic@raf.rs',    phone: '+381607890123', address: 'Vojvode Stepe 42, Beograd',       active: true  },
+  { id: 8,  first_name: 'Aleksandar', last_name: 'Nikolić',   email: 'aleksandar.nikolic@raf.rs',       phone: '+381608901234', address: 'Balkanska 12, Beograd',           active: false },
+  { id: 9,  first_name: 'Maja',       last_name: 'Stanković', email: 'maja.stankovic@raf.rs',     phone: '+381609012345', address: 'Obilićev venac 4, Beograd',       active: true  },
+  { id: 10, first_name: 'Vladimir',   last_name: 'Marković',  email: 'vladimir.markovic@raf.rs',    phone: '+381610123456', address: 'Makedonska 22, Beograd',          active: true  },
+];
 const FAKE_ACCOUNTS = [
   { account_id: 'acc-1', account_number: '111-0001-000000001-11', name: 'Glavni tekući račun',   owner_id: 1, owner_name: 'Petar Petrović', account_type: 'PERSONAL', status: 'ACTIVE', currency: 'RSD', balance: 345000, available_balance: 330000, reserved_funds: 15000, daily_limit: 500000, monthly_limit: 5000000, created_at: '2024-06-15' },
   { account_id: 'acc-2', account_number: '111-0001-000000002-11', name: 'Štedni račun',          owner_id: 1, owner_name: 'Petar Petrović', account_type: 'PERSONAL', status: 'ACTIVE', currency: 'EUR', balance: 5200,   available_balance: 5200,   reserved_funds: 0,     daily_limit: 100000, monthly_limit: 1000000, created_at: '2024-08-01' },
@@ -212,6 +225,56 @@ api.interceptors.request.use(async config => {
     }
     return throwFakeError(config, 401, 'Pogrešan email ili lozinka.');
   }
+
+]  // CLIENT LOGIN
+  if (method === 'post' && path === '/client/login') {
+    if (data.email && data.password) {
+      const client = FAKE_CLIENTS.find(c => c.email === data.email);
+      if (client && data.password) { // U produkciji bi se proveravala prava lozinka
+        return throwFakeResponse(config, {
+          user: {
+            id: client.id,
+            first_name: client.first_name,
+            last_name: client.last_name,
+            email: client.email,
+            phone: client.phone,
+            address: client.address,
+            role: 'client' // Važno: označava da je klijent
+          },
+          token: 'fake-client-jwt-token-456',
+          refresh_token: 'fake-client-refresh-token-789'
+        });
+      }
+    }
+    return throwFakeError(config, 401, 'Pogrešan email ili lozinka.');
+  }
+
+  // EMPLOYEE LOGIN (stari endpoint koji vraća employee podatke)
+  if (method === 'post' && path === '/login') {
+    if (data.email && data.password) {
+      const employee = FAKE_EMPLOYEES.find(e => e.email === data.email);
+      if (employee && data.password) {
+        return throwFakeResponse(config, {
+          user: {
+            employee_id: employee.employee_id,
+            first_name: employee.first_name,
+            last_name: employee.last_name,
+            email: employee.email,
+            username: employee.username,
+            position_id: employee.position_id,
+            department: employee.department,
+            role: 'employee', // Važno: označava da je zaposleni
+            permissions: ['employee.view', 'employee.create', 'employee.edit', 'employee.delete', 'client.view']
+          },
+          token: 'fake-employee-jwt-token-123',
+          refresh_token: 'fake-employee-refresh-token-456'
+        });
+      }
+    }
+    return throwFakeError(config, 401, 'Pogrešan email ili lozinka.');
+  }
+
+  if (method === 'post' && path === '/auth/register') {
 
   if (method === 'post' && path === '/refresh') {
     return throwFakeResponse(config, {
@@ -468,10 +531,10 @@ function throwFakeResponse(config, responseData, status = 200) {
       headers: {},
       config,
       request: {},
-    });
+});
   return config;
 
-    config.adapter = () =>
+config.adapter = () =>
         Promise.resolve({
             data:    responseData,
 

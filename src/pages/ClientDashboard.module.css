@@ -1,0 +1,358 @@
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── HEADER ── */
+.header {
+  background: var(--navy);
+  padding: 0 2rem;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.headerBrand { display: flex; align-items: center; gap: 10px; }
+.headerIcon {
+  width: 32px; height: 32px;
+  background: var(--blue);
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+}
+.headerIcon svg { width: 16px; height: 16px; }
+.headerBrandText { color: #fff; font-weight: 700; font-size: 16px; }
+
+.headerNav { display: flex; gap: 0.25rem; flex: 1; }
+.headerNavBtn {
+  color: rgba(255,255,255,0.6);
+  background: none;
+  border: none;
+  font-family: var(--font);
+  font-size: 13px;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+.headerNavBtn:hover { color: #fff; background: rgba(255,255,255,0.08); }
+
+.headerRight { display: flex; align-items: center; gap: 1rem; }
+.headerProfile {
+  display: flex; align-items: center; gap: 8px;
+  color: rgba(255,255,255,0.8);
+  background: none; border: none;
+  font-family: var(--font);
+  font-size: 13px; font-weight: 500;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: background var(--transition);
+}
+.headerProfile:hover { background: rgba(255,255,255,0.08); }
+.headerAvatar {
+  width: 30px; height: 30px;
+  background: var(--blue);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 11px; font-weight: 700; color: #fff;
+  text-transform: uppercase;
+}
+.headerLogout {
+  display: flex; align-items: center; gap: 6px;
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.12);
+  color: rgba(255,255,255,0.7);
+  font-family: var(--font);
+  font-size: 12px; font-weight: 500;
+  padding: 6px 12px; border-radius: 6px;
+  cursor: pointer; transition: all var(--transition);
+}
+.headerLogout:hover { background: rgba(255,255,255,0.15); color: #fff; }
+
+/* ── CONTENT ── */
+.content { padding: 2rem; max-width: 1280px; margin: 0 auto; width: 100%; }
+.welcome { margin-bottom: 1.5rem; }
+.welcomeTitle { font-size: 22px; font-weight: 700; color: var(--tx-1); }
+.welcomeSub { font-size: 14px; color: var(--tx-2); margin-top: 4px; }
+
+/* ── GRID ── */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+  padding: 1.5rem;
+  border: 1px solid var(--border);
+}
+.cardHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+.cardTitle { font-size: 15px; font-weight: 700; color: var(--tx-1); }
+.cardBadge {
+  font-size: 11px; font-weight: 600;
+  background: var(--blue-dim); color: var(--blue);
+  padding: 3px 8px; border-radius: 20px;
+}
+.cardLink {
+  background: none; border: none;
+  font-family: var(--font); font-size: 12px; font-weight: 600;
+  color: var(--blue); cursor: pointer;
+  transition: color var(--transition);
+}
+.cardLink:hover { color: var(--navy); }
+
+/* ── RAČUNI ── */
+.switcherBtn {
+  display: flex; align-items: center; gap: 6px;
+  background: var(--bg); border: 1px solid var(--border);
+  font-family: var(--font); font-size: 12px; font-weight: 500;
+  color: var(--tx-2); padding: 5px 10px; border-radius: var(--radius);
+  cursor: pointer; transition: all var(--transition);
+}
+.switcherBtn:hover { border-color: var(--blue); color: var(--blue); }
+
+.accountsList { display: flex; flex-direction: column; gap: 0.75rem; }
+.accountItem {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.875rem 1rem;
+  border-radius: var(--radius);
+  border: 1.5px solid var(--border);
+  cursor: pointer; transition: all var(--transition);
+}
+.accountItem:hover { border-color: var(--blue); background: var(--blue-dim); }
+.accountItemActive { border-color: var(--blue); background: var(--blue-dim); }
+.accountIcon {
+  width: 38px; height: 38px; background: var(--bg);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  color: var(--blue); flex-shrink: 0;
+}
+.accountInfo { flex: 1; }
+.accountName { font-size: 13px; font-weight: 600; color: var(--tx-1); }
+.accountNumber { font-size: 12px; color: var(--tx-3); font-family: var(--mono); margin-top: 2px; }
+.accountBalance { text-align: right; }
+.balanceAmount { font-size: 15px; font-weight: 700; color: var(--tx-1); }
+.balanceCurrency { font-size: 11px; color: var(--tx-3); margin-top: 2px; }
+
+/* ── TRANSAKCIJE ── */
+.txTable { width: 100%; border-collapse: collapse; font-size: 13px; }
+.txTable th {
+  text-align: left; padding: 0 0 10px;
+  font-size: 11px; font-weight: 600; color: var(--tx-3);
+  text-transform: uppercase; letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+.txTable td { padding: 10px 0; border-bottom: 1px solid var(--border); color: var(--tx-1); }
+.txTable tr:last-child td { border-bottom: none; }
+.credit { color: var(--green); font-weight: 600; text-align: right; }
+.debit  { color: var(--red);   font-weight: 600; text-align: right; }
+
+/* ── BRZO PLAĆANJE ── */
+.newPayBtn {
+  background: var(--blue-dim); border: none;
+  font-family: var(--font); font-size: 12px; font-weight: 600;
+  color: var(--blue); padding: 5px 12px; border-radius: 20px;
+  cursor: pointer; transition: background var(--transition);
+}
+.newPayBtn:hover { background: rgba(27,79,216,0.2); }
+
+.recipientsList { display: flex; gap: 1rem; flex-wrap: wrap; }
+.recipientBtn {
+  display: flex; flex-direction: column; align-items: center; gap: 8px;
+  background: none; border: none; cursor: pointer; padding: 0.5rem;
+  border-radius: var(--radius); transition: background var(--transition);
+}
+.recipientBtn:hover { background: var(--bg); }
+.recipientAvatar {
+  width: 48px; height: 48px;
+  background: var(--blue-dim); color: var(--blue);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; font-weight: 700;
+  transition: transform var(--transition);
+}
+.recipientBtn:hover .recipientAvatar { transform: scale(1.08); }
+.recipientName { font-size: 12px; color: var(--tx-2); font-weight: 500; }
+
+/* ── KURSNA LISTA ── */
+.ratesTable { display: flex; flex-direction: column; gap: 0.5rem; }
+.rateRow {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.625rem 0.875rem;
+  background: var(--bg); border-radius: var(--radius);
+  font-size: 13px;
+}
+.rateCurrency { font-weight: 700; color: var(--tx-1); width: 36px; }
+.rateLabel { font-size: 11px; color: var(--tx-3); }
+.rateValue { font-weight: 600; color: var(--tx-1); flex: 1; }
+
+.calcDivider { height: 1px; background: var(--border); margin: 1rem 0; }
+.calcTitle { font-size: 13px; font-weight: 600; color: var(--tx-2); margin-bottom: 0.75rem; }
+.calcRow { display: flex; gap: 0.5rem; }
+.calcInput {
+  flex: 1; height: 38px; padding: 0 10px;
+  background: var(--input-bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font); font-size: 13px;
+  color: var(--tx-1); outline: none;
+}
+.calcInput:focus { border-color: var(--border-focus); }
+.calcSelect {
+  height: 38px; padding: 0 8px;
+  background: var(--input-bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font); font-size: 13px;
+  color: var(--tx-1); outline: none; cursor: pointer;
+}
+.calcBtn {
+  height: 38px; padding: 0 14px;
+  background: var(--blue); color: #fff; border: none;
+  border-radius: var(--radius); font-family: var(--font);
+  font-size: 13px; font-weight: 600; cursor: pointer;
+  transition: background var(--transition); white-space: nowrap;
+}
+.calcBtn:hover { background: var(--navy-mid); }
+.calcResult {
+  margin-top: 0.75rem; padding: 0.625rem 0.875rem;
+  background: var(--blue-dim); border-radius: var(--radius);
+  font-size: 13px; font-weight: 600; color: var(--blue);
+}
+
+/* ── MODAL OSNOVA ── */
+.modalOverlay {
+  position: fixed; inset: 0;
+  background: rgba(13,27,62,0.5);
+  backdrop-filter: blur(4px);
+  display: flex; align-items: center; justify-content: center;
+  z-index: 999; padding: 1rem;
+}
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%; max-width: 480px;
+  max-height: 90vh; overflow-y: auto;
+}
+.modalSmall {
+  background: var(--surface);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg);
+  width: 100%; max-width: 360px;
+}
+.modalHeader {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+}
+.modalTitle { font-size: 16px; font-weight: 700; color: var(--tx-1); }
+.modalClose {
+  background: var(--bg); border: none;
+  width: 28px; height: 28px; border-radius: 50%;
+  font-size: 13px; color: var(--tx-2);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  transition: background var(--transition);
+}
+.modalClose:hover { background: var(--border); }
+
+/* ── PROFIL MODAL ── */
+.profileContent { padding: 1.5rem; }
+.profileAvatar {
+  width: 64px; height: 64px;
+  background: var(--blue); border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 22px; font-weight: 700; color: #fff;
+  text-transform: uppercase; margin: 0 auto 0.75rem;
+}
+.profileName { text-align: center; font-size: 18px; font-weight: 700; color: var(--tx-1); }
+.profileEmail { text-align: center; font-size: 13px; color: var(--tx-3); margin-bottom: 1.5rem; }
+.profileFields { display: flex; flex-direction: column; gap: 0.75rem; }
+.profileField {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 0.75rem 1rem;
+  background: var(--bg); border-radius: var(--radius);
+}
+.profileFieldLabel { font-size: 12px; color: var(--tx-3); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+.profileFieldValue { font-size: 13px; color: var(--tx-1); font-weight: 500; }
+
+/* ── PLAĆANJE MODAL ── */
+.payForm { padding: 1.5rem; display: flex; flex-direction: column; gap: 1rem; }
+.payField { display: flex; flex-direction: column; gap: 6px; }
+.payField label { font-size: 12px; font-weight: 600; color: var(--tx-2); text-transform: uppercase; letter-spacing: 0.04em; }
+.payInput {
+  height: 42px; padding: 0 12px;
+  background: var(--input-bg); border: 1.5px solid var(--border);
+  border-radius: var(--radius); font-family: var(--font);
+  font-size: 14px; color: var(--tx-1); outline: none;
+  transition: border-color var(--transition);
+}
+.payInput:focus { border-color: var(--border-focus); }
+.payBtn {
+  height: 46px; background: var(--blue); color: #fff;
+  border: none; border-radius: var(--radius);
+  font-family: var(--font); font-size: 14px; font-weight: 600;
+  cursor: pointer; transition: background var(--transition);
+  margin-top: 0.5rem;
+}
+.payBtn:hover { background: var(--navy-mid); }
+
+.successMsg {
+  padding: 2.5rem 1.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 1rem;
+  font-size: 15px; font-weight: 600; color: var(--green);
+}
+.successIcon {
+  width: 56px; height: 56px;
+  background: var(--green-bg);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px; color: var(--green);
+}
+
+/* ── SWITCHER MODAL ── */
+.switcherList { padding: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+.switcherItem {
+  display: flex; align-items: center; gap: 1rem;
+  padding: 0.875rem 1rem; border-radius: var(--radius);
+  border: 1.5px solid var(--border); background: none;
+  cursor: pointer; font-family: var(--font);
+  transition: all var(--transition); text-align: left;
+  width: 100%;
+}
+.switcherItem:hover { border-color: var(--blue); background: var(--blue-dim); }
+.switcherItemActive { border-color: var(--blue); background: var(--blue-dim); }
+.switcherIcon {
+  width: 34px; height: 34px; background: var(--bg);
+  border-radius: 8px; display: flex; align-items: center; justify-content: center;
+  color: var(--blue); flex-shrink: 0;
+}
+.switcherInfo { flex: 1; }
+.switcherName { font-size: 13px; font-weight: 600; color: var(--tx-1); }
+.switcherNumber { font-size: 12px; color: var(--tx-3); font-family: var(--mono); margin-top: 2px; }
+.switcherBalance { font-size: 14px; font-weight: 700; color: var(--tx-1); }
+.switcherCheck { color: var(--blue); font-weight: 700; font-size: 16px; }
+
+/* ── COMING SOON ── */
+.comingSoon {
+  padding: 2.5rem 1.5rem;
+  display: flex; flex-direction: column; align-items: center; gap: 0.75rem;
+}
+.comingSoonIcon { font-size: 40px; }
+.comingSoonText { font-size: 16px; font-weight: 600; color: var(--tx-1); }
+.comingSoonSub { font-size: 13px; color: var(--tx-3); margin-bottom: 0.5rem; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: 1fr; }
+  .headerNav { display: none; }
+  .content { padding: 1rem; }
+}
