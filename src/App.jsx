@@ -7,8 +7,18 @@ import Dashboard           from './pages/Dashboard';
 import EmployeeList        from './pages/EmployeeList';
 import NewEmployee         from './pages/NewEmployee';
 import EmployeeDetails     from './pages/EmployeeDetails';
+import Accounts            from './pages/Accounts';
 import NotFound            from './pages/NotFound';
 import Loans from './pages/Loans';
+
+import PaymentOverview from './pages/PaymentOverview';
+
+
+import CardsPage           from './pages/CardsPage';
+
+import RatesList from "./features/exchange/RatesList.jsx";
+import CurrencyCalculator from "./features/exchange/CurrencyCalculator.jsx";
+
 
 function ProtectedRoute({ children }) {
   const token = useAuthStore(s => s.token);
@@ -22,12 +32,19 @@ function PermissionRoute({ permission, children }) {
   return children;
 }
 
+function ClientRoute({ children }) {
+  const identityType = useAuthStore(s => s.user?.identity_type);
+  if (identityType?.toUpperCase() !== 'CLIENT') return <Navigate to="/" replace />;
+  return children;
+}
+
 export default function App() {
   const user = useAuthStore(s => s.user);
   console.log(user)
   return (
     <BrowserRouter>
       <Routes>
+        {/*<Route path="/payment-overview" element={<PaymentOverview />} />*/}
         <Route path="/login"            element={<Login />} />
         <Route path="/reset-password"   element={<ResetPassword />} />
         <Route path="/activate"          element={<AccountActivation />} />
@@ -44,11 +61,31 @@ export default function App() {
         <Route path="/employees/:id" element={
           <ProtectedRoute><PermissionRoute permission="employee.view"><EmployeeDetails /></PermissionRoute></ProtectedRoute>
         } />
-        <Route path="/loans" element={
+]        <Route path="/loans" element={
           <ProtectedRoute><Loans /></ProtectedRoute>
         } />
+]
+        <Route path="/payments" element={
+          <ProtectedRoute><PaymentOverview /></ProtectedRoute>
+        } />
+
+        <Route path="/cards" element={
+          <ProtectedRoute><CardsPage/></ProtectedRoute>
+        } />
+
+        <Route path="/accounts" element={
+          <ProtectedRoute><ClientRoute><Accounts /></ClientRoute></ProtectedRoute>
+        } />
+
+
+        <Route path="/exchange/rates" element={<RatesList />} />
+        <Route path="/exchange/calculator" element={<CurrencyCalculator />} />
+
 
         <Route path="*" element={<NotFound />} />
+
+
+
       </Routes>
     </BrowserRouter>
   );
