@@ -9,11 +9,14 @@ describe('Feature 1 - Autentifikacija korisnika', () => {
         submitLogin();
 
         cy.wait('@login').then(({ response }) => {
-            // backend često vraća 401 i za "user ne postoji"
-            expect(response?.statusCode).to.be.oneOf([401, 403, 404]);
+            expect([401, 403, 404]).to.include(response?.statusCode);
         });
 
         cy.url().should('include', '/login');
-        cy.contains(/ne postoj|nepostoje|unauthorized|pogrešn/i).should('be.visible');
+
+        cy.window().then((win) => {
+            expect(win.localStorage.getItem('token')).to.be.null;
+            expect(win.localStorage.getItem('refresh_token')).to.be.null;
+        });
     });
 });

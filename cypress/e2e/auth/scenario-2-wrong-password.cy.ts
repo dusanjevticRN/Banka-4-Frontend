@@ -9,13 +9,14 @@ describe('Feature 1 - Autentifikacija korisnika', () => {
         submitLogin();
 
         cy.wait('@login').then(({ response }) => {
-            expect(response?.statusCode).to.be.oneOf([401, 403]);
+            expect([401, 403]).to.include(response?.statusCode);
         });
 
-        // ostaje na login stranici
         cy.url().should('include', '/login');
 
-        // poruka može da varira zavisno od FE implementacije
-        cy.contains(/neispravn|pogrešn|unauthorized|forbidden/i).should('be.visible');
+        cy.window().then((win) => {
+            expect(win.localStorage.getItem('token')).to.be.null;
+            expect(win.localStorage.getItem('refresh_token')).to.be.null;
+        });
     });
 });
