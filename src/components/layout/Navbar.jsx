@@ -101,6 +101,13 @@ export default function Navbar() {
 
 
 
+          <NavLink
+            to="/actuaries"
+            className={({ isActive }) => `${styles.navLink} ${isActive ? styles.active : ''}`}
+          >
+            Aktuari
+          </NavLink>
+
           {can('account.create') && (
             <NavLink
               to="/accounts/new"
