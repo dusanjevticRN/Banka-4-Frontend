@@ -32,6 +32,7 @@ import ClientRecipients from './pages/client/ClientRecipients';
 import ClientTransfers  from './pages/client/ClientTransfers';
 import ClientPaymentOverview from './pages/client/ClientPaymentOverview';
 import NewPayment       from './pages/client/NewPayment';
+import ClientSecurities from './pages/client/ClientSecurities';
 
 // Shared
 import NotFound from './pages/NotFound';
@@ -112,6 +113,7 @@ export default function App() {
         <Route path="/transfers/new"       element={<ProtectedRoute><ClientRoute><CreateTransfer  /></ClientRoute></ProtectedRoute>} />
         <Route path="/transfers/confirm"   element={<ProtectedRoute><ClientRoute><ConfirmTransfer /></ClientRoute></ProtectedRoute>} />
         <Route path="/transfers/history"   element={<ProtectedRoute><ClientRoute><TransfersHistory /></ClientRoute></ProtectedRoute>} />
+        <Route path="/client/securities" element={<ProtectedRoute><ClientSecurities /></ProtectedRoute>} />
 
         {/* ADMIN/EMPLOYEE RUTE */}
         <Route path="/admin"     element={<ProtectedRoute><EmployeeRoute><Dashboard    /></EmployeeRoute></ProtectedRoute>} />
